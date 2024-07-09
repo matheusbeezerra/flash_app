@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:torch_light/torch_light.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const HomePage());
@@ -20,7 +21,6 @@ class FlashlightApp extends StatefulWidget {
   const FlashlightApp({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _FlashlightAppState createState() => _FlashlightAppState();
 }
 
@@ -49,18 +49,39 @@ class _FlashlightAppState extends State<FlashlightApp> {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            _isOn ? 'assets/images/guerreiroon.jpg' : 'assets/images/guerreirooff.png',
+            _isOn
+                ? 'assets/images/guerreiroon.jpg'
+                : 'assets/images/guerreirooff.png',
             fit: BoxFit.cover,
           ),
           Center(
-            child: FloatingActionButton(
-              onPressed: _toggleFlashlight,
-              backgroundColor: Colors.transparent,
-              child: Icon(
-                _isOn ? Icons.lens_blur : Icons.lens_blur_sharp,
-                size: 50.0,
-                color: _isOn ? const Color.fromARGB(255, 233, 126, 3).withOpacity(0.7) : Colors.white.withOpacity(0.7),
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                FloatingActionButton(
+                  onPressed: _toggleFlashlight,
+                  backgroundColor: Colors.transparent,
+                  child: Icon(
+                    _isOn ? Icons.lens_blur : Icons.lens_blur_sharp,
+                    size: 50.0,
+                    color: _isOn
+                        ? const Color.fromARGB(255, 233, 126, 3)
+                            .withOpacity(0.7)
+                        : Colors.white.withOpacity(0.7),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  _isOn ? 'Desligar lanterna' : 'Ligar lanterna',
+                  style: GoogleFonts.bebasNeue(
+                    color: _isOn
+                        ? const Color.fromARGB(255, 233, 126, 3)
+                            .withOpacity(0.7)
+                        : Colors.white.withOpacity(0.7),
+                    fontSize: 18.0,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
